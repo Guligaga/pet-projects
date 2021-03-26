@@ -114,3 +114,75 @@
 .pawn-light[data-theme="standart"] {
     background: url(../assets/standart-pieces/pawn-light.png);
 }
+
+/* Leather board */
+
+.chess-board[data-theme="leather"] {
+    background: url(../assets/textures/leather-texture.jpg) 50% 113%;
+    background-size: contain;
+}
+.dark-cell[data-theme="leather"] {
+    background: #3f1009a0;
+}
+.light-cell[data-theme="leather"] {
+    background: #ffffff50;
+}
+
+/* Light wood board */
+
+.chess-board[data-theme="light-wood"] {
+    background: url(../assets/textures/light-wood-texture.jpg) 50% 113%;
+    background-size: contain;
+}
+.dark-cell[data-theme="light-wood"] {
+    background: #240703a0;
+}
+.light-cell[data-theme="light-wood"] {
+    background: #2c2c2c54;
+}
+
+/* Light space board */
+
+.chess-board[data-theme="light-space"] {
+    background: url(https://imgix.bustle.com/uploads/getty/2020/4/25/ba433b45-1ae3-4757-a7bb-239cf56d3fd5-getty-1218538177.jpg?w=1200&h=630&fit=crop&crop=faces&fm=jpg);
+    background-size: cover;
+}
+.dark-cell[data-theme="light-space"] {
+    background: #0e1c414f;
+}
+.light-cell[data-theme="light-space"] {
+    background: #d7d6ffc5;
+}
+
+/* Dark space board */
+
+.chess-board[data-theme="dark-space"] {
+    background: url(../assets/textures/space-texture.png) 20% 114%;
+    background-size: cover;
+}
+.dark-cell[data-theme="dark-space"] {
+    background: #8f8f8f4f;
+}
+.light-cell[data-theme="dark-space"] {
+    background: #c8d6ff9a;
+}
+
+/* Marble board */
+
+.chess-board[data-theme="marble"] {
+    background: none;
+}
+.dark-cell[data-theme="marble"] {
+    background: url(../assets/textures/black-marble-cell-texture.jpg);
+    background-size: 400%;
+}
+.light-cell[data-theme="marble"] {
+    background: url(../assets/textures/white-marble-cell-texture.jpg);
+    background-size: 200%;
+}
+
+/* marble
+leather
+light-space
+dark-space
+light-wood */

@@ -88,13 +88,6 @@ body {
     position: relative;
     border: 2px solid black;
     box-sizing: content-box;
-    background: url(../assets/textures/pink-fog-texture.jpg) 50% 113%;
-    background: url(../assets/textures/leather-texture.jpg) 50% 113%;
-    background: url(../assets/textures/light-wood-texture.jpg) 50% 113%;
-    background: url(../assets/textures/space-texture.png) 50% 114%;
-    background: url(https://imgix.bustle.com/uploads/getty/2020/4/25/ba433b45-1ae3-4757-a7bb-239cf56d3fd5-getty-1218538177.jpg?w=1200&h=630&fit=crop&crop=faces&fm=jpg);
-    background: none;
-    background-size: cover;
     z-index: 1;
 }
 
@@ -115,22 +108,11 @@ body {
 }
 
 .dark-cell {
-    background: #3f1009a0;
-    background: #290a05a0;
-    background: #8f8f8f4f;
-    background: #0e1c414f;
-    background: url(../assets/textures/black-marble-cell-texture.jpg);
-    background-size: 400%;
     color: #cccccc;
 }
 
 .light-cell {
-    background: #ffffff50;
-    background: #00000050;
-    background: #ffffffc0;
-    background: #d7d6ffc5;
-    background: url(../assets/textures/white-marble-cell-texture.jpg);
-    background-size: 200%;
+    color: #000;   
 }
 
 .allowed-cell::after {
@@ -138,7 +120,6 @@ body {
     width: 35%;
     height: 35%;
     background-color: #00ffdda8;
-    background-color: #ff0b008c;
     position: absolute;
 }
 
@@ -147,14 +128,12 @@ body {
     width: 90%;
     height: 90%;
     background-color: #00ffdd7e;
-    background-color: #ff0d0069;
     position: absolute;
 }
 
 .under-check::after {
     content: '';
     background-color: #ff972c54;
-    /* background: 45% 45% / 350% no-repeat url(../assets/explosion-giphy.gif); */
     width: 100%;
     height: 100%;
     position: absolute;
@@ -176,7 +155,6 @@ body {
 .moves-history-controllers {
     display: flex;
     justify-content: space-between;
-    /* align-self: center; */
     width: 80px;
     margin: 0 0 0 10px;
 }

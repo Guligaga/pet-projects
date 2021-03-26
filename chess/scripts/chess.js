@@ -8,7 +8,8 @@ const cells = els('.cell');
 let pieces = els('.piece');
 
 const sideSelector = el('#side-selector');
-const piecesThemeSelector = el('#pieces-theme')
+const piecesThemeSelector = el('#pieces-theme');
+const boardThemeSelector = el('#board-theme');
 const promotionModal = el('.promotion-modal');
 const gameoverModal = el('.gameover-modal');
 
@@ -346,7 +347,7 @@ const objOfPieces = {
 }
 const movesHistory = [];
 const theme = {
-    forBoard: '',
+    forBoard: 'marble',
     forPieces: 'glass'
 }
 // setCellsCoordinates();
@@ -1436,9 +1437,17 @@ piecesThemeSelector.addEventListener('change', e => {
     theme.forPieces = e.currentTarget.value;
     els('.piece').forEach(piece => {
         piece.dataset.theme = theme.forPieces;
-        // console.log(piece)
     })
 })
+
+boardThemeSelector.addEventListener('change', e => {
+    theme.forBoard = e.currentTarget.value;
+    board.dataset.theme = theme.forBoard;
+    cells.forEach(cell => {
+        cell.dataset.theme = theme.forBoard;
+    })
+})
+
 
 
 // print('rnbq1bnr/ppppkppp/8/4p2Q/4P3/8/PPPP1PPP/RNB1KBNR w KQkq - 2 3', 'mate')
