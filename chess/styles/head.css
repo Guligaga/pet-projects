@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --field-side-size: 400px;
+    --container-w: 600px;
+    --container-h: 600px;
+    --container-padding-x: calc((var(--container-w) - var(--field-side-size))/2);
+    --container-padding-y: calc((var(--container-h) - var(--field-side-size))/2);
+    --board-size: 600px;
+}
+
+.d-none {
+    display: none;
+}
