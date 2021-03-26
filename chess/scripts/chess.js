@@ -347,6 +347,10 @@ const objOfPieces = {
     },
 }
 const movesHistory = [];
+const theme = {
+    forBoard: '',
+    forPieces: 'glass'
+}
 // setCellsCoordinates();
 // setPiecesSize();
 
@@ -1186,6 +1190,7 @@ function createPieceElement(pieceName, temp = false) {
     piece.id = pieceName;
     const className0 = temp ? 'piece-modal' : 'piece';
     piece.classList.add(className0, pieceName.slice(0, -1))
+    piece.dataset.theme = theme.forPieces;
     return piece;
 }
 

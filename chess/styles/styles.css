@@ -1,4 +1,5 @@
 @import './head.css';
+@import './themes.css';
 
 body {
     margin: 0;
@@ -166,52 +167,7 @@ body {
     position: absolute;
 }
 
-.rook-dark {
-    background: url(../assets/glass-pieces/rook-dark.png);
-    background-size: contain;
-}
-.bishop-dark {
-    background: url(../assets/glass-pieces/bishop-dark.png);
-    background-size: contain;
-}
-.knight-dark {
-    background: url(../assets/glass-pieces/knight-dark.png);
-    background-size: contain;
-}
-.queen-dark {
-    background: url(../assets/glass-pieces/queen-dark.png);
-    background-size: contain;
-}
-.king-dark {
-    background: url(../assets/glass-pieces/king-dark.png);
-    background-size: contain;
-}
-.pawn-dark {
-    background: url(../assets/glass-pieces/pawn-dark.png);
-    background-size: contain;
-}
-.rook-light {
-    background: url(../assets/glass-pieces/rook-light.png);
-    background-size: contain;
-}
-.bishop-light {
-    background: url(../assets/glass-pieces/bishop-light.png);
-    background-size: contain;
-}
-.knight-light {
-    background: url(../assets/glass-pieces/knight-light.png);
-    background-size: contain;
-}
-.queen-light {
-    background: url(../assets/glass-pieces/queen-light.png);
-    background-size: contain;
-}
-.king-light {
-    background: url(../assets/glass-pieces/king-light.png);
-    background-size: contain;
-}
-.pawn-light {
-    background: url(../assets/glass-pieces/pawn-light.png);
+.piece[data-theme] {
     background-size: contain;
 }
 
