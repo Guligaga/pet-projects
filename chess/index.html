@@ -14,19 +14,12 @@
 <body>
 <div class="wrapper">
     <div class="nav-options">
-        <div class="side-selector">
-            <label for="side-selector">Side</label>
-            <select name="" id="side-selector">
-                <option value="light">light</option>
-                <option value="dark">dark</option>
-            </select>
-        </div>
-        <form action="" class="board-loader" id="fen-form">
+        <form action="" class="board-loader nav-options__item" id="fen-form">
             <input type="text" name="" id="fen-input" placeholder="FEN">
             <input type="submit" value="Load">
             <input type="button" value="Copy to cb" id="fen-to-cb">
         </form>
-        <div class="moves-history-controllers">
+        <div class="moves-history-controllers nav-options__item">
             <div class="moves-history-controllers__item" id="history-back"><i class="fas fa-arrow-left" id="history-la"></i></div>
             <div class="moves-history-controllers__item" id="history-forward"><i class="fas fa-arrow-right" id="history-ra"></i></div>
         </div>
@@ -181,8 +174,23 @@
         
     </div> <!-- container -->
     <div class="game-menu">
-        <form action="" class="start-game">
+        <!-- <form action="" class="start-game">
             <input type="submit" class="start-game__submit" id="sg-submit" value="Start Game"/>
+        </form> -->
+        <form class="side-selector game-menu__item">
+            <label for="side-selector">Side</label>
+            <select name="" id="side-selector">
+                <option value="light">light</option>
+                <option value="dark">dark</option>
+            </select>
+        </form>
+        <form class="theme-selector game-menu__item">
+            <label for="theme-selector">Pieces theme</label>
+            <select name="" id="pieces-theme">
+                <option value="glass">glass</option>
+                <option value="neon">neon</option>
+                <option value="standart">standart</option>
+            </select>
         </form>
     </div>
 </div>

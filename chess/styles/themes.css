@@ -75,3 +75,42 @@
 .pawn-light[data-theme="neon"] {
     background: url(../assets/neon-pieces/pawn-light.png);
 }
+
+/* Standart pieces */
+
+.rook-dark[data-theme="standart"] {
+    background: url(../assets/standart-pieces/rook-dark.png);
+}
+.bishop-dark[data-theme="standart"] {
+    background: url(../assets/standart-pieces/bishop-dark.png);
+}
+.knight-dark[data-theme="standart"] {
+    background: url(../assets/standart-pieces/knight-dark.png);
+}
+.queen-dark[data-theme="standart"] {
+    background: url(../assets/standart-pieces/queen-dark.png);
+}
+.king-dark[data-theme="standart"] {
+    background: url(../assets/standart-pieces/king-dark.png);
+}
+.pawn-dark[data-theme="standart"] {
+    background: url(../assets/standart-pieces/pawn-dark.png);
+}
+.rook-light[data-theme="standart"] {
+    background: url(../assets/standart-pieces/rook-light.png);
+}
+.bishop-light[data-theme="standart"] {
+    background: url(../assets/standart-pieces/bishop-light.png);
+}
+.knight-light[data-theme="standart"] {
+    background: url(../assets/standart-pieces/knight-light.png);
+}
+.queen-light[data-theme="standart"] {
+    background: url(../assets/standart-pieces/queen-light.png);
+}
+.king-light[data-theme="standart"] {
+    background: url(../assets/standart-pieces/king-light.png);
+}
+.pawn-light[data-theme="standart"] {
+    background: url(../assets/standart-pieces/pawn-light.png);
+}

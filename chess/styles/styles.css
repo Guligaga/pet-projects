@@ -6,12 +6,14 @@ body {
     background: var(--body-background)
 }
 .nav-options {
-    margin: 10px 20px;
-    display: flex
+    margin: 10px 0;
+    padding: 20px;
+    display: flex;
+    background: rgb(160, 161, 180);
 }
 
-.board-loader {
-    margin: 0 10px;
+.nav-options__item {
+    margin: 0 20px;
 }
 
 #fen-input {
@@ -54,8 +56,8 @@ body {
 .notation-container {
     display: flex;
     position: absolute;
-    width: 700px;
-    height: 700px;
+    width: var(--board-size);
+    height: var(--board-size);
 }
 
 .notation {
@@ -79,8 +81,8 @@ body {
 }
 
 .chess-board {
-    width: 700px;
-    height: 700px;
+    width: var(--board-size);
+    height: var(--board-size);
     display: flex;
     flex-direction: column;
     position: relative;
@@ -172,13 +174,11 @@ body {
 }
 
 .moves-history-controllers {
-    color: #008cff;
     display: flex;
     justify-content: space-between;
     /* align-self: center; */
     width: 80px;
     margin: 0 0 0 10px;
-    
 }
 
 .moves-history-controllers__item {
@@ -191,7 +191,7 @@ body {
 
 #history-ra, #history-la {
     font-size: 20px;
-    color: #008cff;
+    color: #392ac4;
 }
 
 .gameover-modal {
@@ -262,4 +262,21 @@ body {
     width: 87.5px; 
     height: 87.5px;
     cursor: pointer;
+}
+
+.game-menu {
+    margin: 40px 0;
+    padding: 20px;
+    display: flex;
+    background: rgb(92, 90, 124);;
+    color: whitesmoke;
+}
+
+.game-menu__item {
+    margin: 0 20px;
+}
+
+select {
+    padding: 5px 10px;
+    border-radius: 5px;
 }

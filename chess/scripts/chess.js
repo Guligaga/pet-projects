@@ -8,11 +8,9 @@ const cells = els('.cell');
 let pieces = els('.piece');
 
 const sideSelector = el('#side-selector');
+const piecesThemeSelector = el('#pieces-theme')
 const promotionModal = el('.promotion-modal');
 const gameoverModal = el('.gameover-modal');
-
-
-
 
 // Paint light and dark cells
 
@@ -1432,6 +1430,16 @@ window.addEventListener('keydown', e => {
     }, 100)
     
 })
+
+// Themes switch
+piecesThemeSelector.addEventListener('change', e => {
+    theme.forPieces = e.currentTarget.value;
+    els('.piece').forEach(piece => {
+        piece.dataset.theme = theme.forPieces;
+        // console.log(piece)
+    })
+})
+
 
 // print('rnbq1bnr/ppppkppp/8/4p2Q/4P3/8/PPPP1PPP/RNB1KBNR w KQkq - 2 3', 'mate')
 // print('rnbqk3/ppppppPp/7r/6p1/4n3/7R/PPPPPPP1/RNBQKBN1 w Qq - 0 8', 'promotion')
