@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Chess Mates</title>
+    <script src="https://kit.fontawesome.com/b31778a180.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="./assets/favicon.png"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/head.css" id="style-head">
+    <link rel="stylesheet" href="./styles/styles.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="nav-options">
+        <div class="side-selector">
+            <label for="side-selector">Side</label>
+            <select name="" id="side-selector">
+                <option value="light">light</option>
+                <option value="dark">dark</option>
+            </select>
+        </div>
+        <form action="" class="board-loader" id="fen-form">
+            <input type="text" name="" id="fen-input" placeholder="FEN">
+            <input type="submit" value="Load">
+            <input type="button" value="Copy to cb" id="fen-to-cb">
+        </form>
+        <div class="moves-history-controllers">
+            <div class="moves-history-controllers__item" id="history-back"><i class="fas fa-arrow-left" id="history-la"></i></div>
+            <div class="moves-history-controllers__item" id="history-forward"><i class="fas fa-arrow-right" id="history-ra"></i></div>
+        </div>
+    </div>
+    <div class="chess-main container">
+        <div class="chess-board resizable">
+            <div class="row" id="row-8">
+                <div class="cell col-a" id="a8" data-codename="a8" data-coordinates="[1,8]"></div>
+                <div class="cell col-b" id="b8" data-codename="b8" data-coordinates="[2,8]"></div>
+                <div class="cell col-c" id="c8" data-codename="c8" data-coordinates="[3,8]"></div>
+                <div class="cell col-d" id="d8" data-codename="d8" data-coordinates="[4,8]"></div>
+                <div class="cell col-e" id="e8" data-codename="e8" data-coordinates="[5,8]"></div>
+                <div class="cell col-f" id="f8" data-codename="f8" data-coordinates="[6,8]"></div>
+                <div class="cell col-g" id="g8" data-codename="g8" data-coordinates="[7,8]"></div>
+                <div class="cell col-h" id="h8" data-codename="h8" data-coordinates="[8,8]"></div>
+            </div>
+            <div class="row" id="row-7">
+                <div class="cell col-a" id="a7" data-codename="a7" data-coordinates="[1,7]"></div>
+                <div class="cell col-b" id="b7" data-codename="b7" data-coordinates="[2,7]"></div>
+                <div class="cell col-c" id="c7" data-codename="c7" data-coordinates="[3,7]"></div>
+                <div class="cell col-d" id="d7" data-codename="d7" data-coordinates="[4,7]"></div>
+                <div class="cell col-e" id="e7" data-codename="e7" data-coordinates="[5,7]"></div>
+                <div class="cell col-f" id="f7" data-codename="f7" data-coordinates="[6,7]"></div>
+                <div class="cell col-g" id="g7" data-codename="g7" data-coordinates="[7,7]"></div>
+                <div class="cell col-h" id="h7" data-codename="h7" data-coordinates="[8,7]"></div>
+            </div>
+            <div class="row" id="row-6">
+                <div class="cell col-a" id="a6" data-codename="a6" data-coordinates="[1,6]"></div>
+                <div class="cell col-b" id="b6" data-codename="b6" data-coordinates="[2,6]"></div>
+                <div class="cell col-c" id="c6" data-codename="c6" data-coordinates="[3,6]"></div>
+                <div class="cell col-d" id="d6" data-codename="d6" data-coordinates="[4,6]"></div>
+                <div class="cell col-e" id="e6" data-codename="e6" data-coordinates="[5,6]"></div>
+                <div class="cell col-f" id="f6" data-codename="f6" data-coordinates="[6,6]"></div>
+                <div class="cell col-g" id="g6" data-codename="g6" data-coordinates="[7,6]"></div>
+                <div class="cell col-h" id="h6" data-codename="h6" data-coordinates="[8,6]"></div>
+            </div>
+            <div class="row" id="row-5">
+                <div class="cell col-a" id="a5" data-codename="a5" data-coordinates="[1,5]"></div>
+                <div class="cell col-b" id="b5" data-codename="b5" data-coordinates="[2,5]"></div>
+                <div class="cell col-c" id="c5" data-codename="c5" data-coordinates="[3,5]"></div>
+                <div class="cell col-d" id="d5" data-codename="d5" data-coordinates="[4,5]"></div>
+                <div class="cell col-e" id="e5" data-codename="e5" data-coordinates="[5,5]"></div>
+                <div class="cell col-f" id="f5" data-codename="f5" data-coordinates="[6,5]"></div>
+                <div class="cell col-g" id="g5" data-codename="g5" data-coordinates="[7,5]"></div>
+                <div class="cell col-h" id="h5" data-codename="h5" data-coordinates="[8,5]"></div>
+            </div>
+            <div class="row" id="row-4">
+                <div class="cell col-a" id="a4" data-codename="a4" data-coordinates="[1,4]"></div>
+                <div class="cell col-b" id="b4" data-codename="b4" data-coordinates="[2,4]"></div>
+                <div class="cell col-c" id="c4" data-codename="c4" data-coordinates="[3,4]"></div>
+                <div class="cell col-d" id="d4" data-codename="d4" data-coordinates="[4,4]"></div>
+                <div class="cell col-e" id="e4" data-codename="e4" data-coordinates="[5,4]"></div>
+                <div class="cell col-f" id="f4" data-codename="f4" data-coordinates="[6,4]"></div>
+                <div class="cell col-g" id="g4" data-codename="g4" data-coordinates="[7,4]"></div>
+                <div class="cell col-h" id="h4" data-codename="h4" data-coordinates="[8,4]"></div>
+            </div>
+            <div class="row" id="row-3">
+                <div class="cell col-a" id="a3" data-codename="a3" data-coordinates="[1,3]"></div>
+                <div class="cell col-b" id="b3" data-codename="b3" data-coordinates="[2,3]"></div>
+                <div class="cell col-c" id="c3" data-codename="c3" data-coordinates="[3,3]"></div>
+                <div class="cell col-d" id="d3" data-codename="d3" data-coordinates="[4,3]"></div>
+                <div class="cell col-e" id="e3" data-codename="e3" data-coordinates="[5,3]"></div>
+                <div class="cell col-f" id="f3" data-codename="f3" data-coordinates="[6,3]"></div>
+                <div class="cell col-g" id="g3" data-codename="g3" data-coordinates="[7,3]"></div>
+                <div class="cell col-h" id="h3" data-codename="h3" data-coordinates="[8,3]"></div>
+            </div>
+            <div class="row" id="row-2">
+                <div class="cell col-a" id="a2" data-codename="a2" data-coordinates="[1,2]"></div>
+                <div class="cell col-b" id="b2" data-codename="b2" data-coordinates="[2,2]"></div>
+                <div class="cell col-c" id="c2" data-codename="c2" data-coordinates="[3,2]"></div>
+                <div class="cell col-d" id="d2" data-codename="d2" data-coordinates="[4,2]"></div>
+                <div class="cell col-e" id="e2" data-codename="e2" data-coordinates="[5,2]"></div>
+                <div class="cell col-f" id="f2" data-codename="f2" data-coordinates="[6,2]"></div>
+                <div class="cell col-g" id="g2" data-codename="g2" data-coordinates="[7,2]"></div>
+                <div class="cell col-h" id="h2" data-codename="h2" data-coordinates="[8,2]"></div>
+            </div>
+            <div class="row" id="row-1">
+                <div class="cell col-a" id="a1" data-codename="a1" data-coordinates="[1,1]"></div>
+                <div class="cell col-b" id="b1" data-codename="b1" data-coordinates="[2,1]"></div>
+                <div class="cell col-c" id="c1" data-codename="c1" data-coordinates="[3,1]"></div>
+                <div class="cell col-d" id="d1" data-codename="d1" data-coordinates="[4,1]"></div>
+                <div class="cell col-e" id="e1" data-codename="e1" data-coordinates="[5,1]"></div>
+                <div class="cell col-f" id="f1" data-codename="f1" data-coordinates="[6,1]"></div>
+                <div class="cell col-g" id="g1" data-codename="g1" data-coordinates="[7,1]"></div>
+                <div class="cell col-h" id="h1" data-codename="h1" data-coordinates="[8,1]"></div>
+            </div>
+            <div class="pieces">
+            </div>
+            <div class="resizer" id="se" data-direction="se">
+                <i class="fas fa-expand-alt resizer__logo"></i>
+            </div>
+            <div class="promotion-modal d-none">
+            </div>
+            <div class="gameover-modal resizable d-none">
+                <h3 class="gameover-modal__title">Game Over</h3>
+            </div>
+        </div> <!-- chess-board -->
+        <div class="notation-container resizable">
+            <div class="notation notation-numbers">
+                <span id="notation8">8</span>
+                <span id="notation7">7</span>
+                <span id="notation6">6</span>
+                <span id="notation5">5</span>
+                <span id="notation4">4</span>
+                <span id="notation3">3</span>
+                <span id="notation2">2</span>
+                <span id="notation1">1</span>
+            </div>
+            <div class="notation notation-letters">
+                <span id="notationA">A</span>
+                <span id="notationB">B</span>
+                <span id="notationC">C</span>
+                <span id="notationD">D</span>
+                <span id="notationE">E</span>
+                <span id="notationF">F</span>
+                <span id="notationG">G</span>
+                <span id="notationH">H</span>
+            </div>
+        </div>
+        
+    </div> <!-- container -->
+    <div class="game-menu">
+        <form action="" class="start-game">
+            <input type="submit" class="start-game__submit" id="sg-submit" value="Start Game"/>
+        </form>
+    </div>
+</div>
+<script type="text/javascript" src="./scripts/utils.js"></script>
+<script type="text/javascript" src="./scripts/chess.js"></script>
+<script type="text/javascript" src="./scripts/resizing.js"></script>
+</body>
+</html>

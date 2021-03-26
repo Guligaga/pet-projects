@@ -1,0 +1,309 @@
+@import './head.css';
+
+body {
+    margin: 0;
+    background: var(--body-background)
+}
+.nav-options {
+    margin: 10px 20px;
+    display: flex
+}
+
+.board-loader {
+    margin: 0 10px;
+}
+
+#fen-input {
+    width: 420px;
+}
+
+.container {
+    margin: 0 auto;
+    box-sizing: content-box;
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    /* height: var(--container-h); */
+    width: var(--container-w);
+    position: relative;
+}
+
+.resizer {
+    display: inline-block;
+    position: absolute;
+    line-height: 15px;
+    font-size: 20px;
+    width: 15px;
+    height: 15px;
+    /* background-color: rgb(120, 161, 168); */
+    background-attachment: 10px 10px;
+    z-index: 1;
+}
+#se {
+    bottom: -15px;
+    right: -15px;
+    cursor: nwse-resize;
+}
+
+.resizer__logo {
+    color: rgb(160, 79, 126);
+    transform: scale(-1, 1) translate(-5px, 0px);
+}
+
+.notation-container {
+    display: flex;
+    position: absolute;
+    width: 700px;
+    height: 700px;
+}
+
+.notation {
+    display: flex;
+    position: absolute;
+    justify-content: space-around;
+    user-select: none;
+}
+
+.notation-numbers {
+    flex-direction: column;
+    left: -15px;
+    height: 100%;
+}
+
+.notation-letters {
+    flex-direction: row;
+    bottom: -25px;
+    width: 100%;
+    margin-left: 2px;
+}
+
+.chess-board {
+    width: 700px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 2px solid black;
+    box-sizing: content-box;
+    background: url(../assets/textures/pink-fog-texture.jpg) 50% 113%;
+    background: url(../assets/textures/leather-texture.jpg) 50% 113%;
+    background: url(../assets/textures/light-wood-texture.jpg) 50% 113%;
+    background: url(../assets/textures/space-texture.png) 50% 114%;
+    background: url(https://imgix.bustle.com/uploads/getty/2020/4/25/ba433b45-1ae3-4757-a7bb-239cf56d3fd5-getty-1218538177.jpg?w=1200&h=630&fit=crop&crop=faces&fm=jpg);
+    background: none;
+    background-size: cover;
+    z-index: 1;
+}
+
+.row {
+    display: flex;
+    height: 12.5%;
+    color: rgb(88, 0, 0);
+}
+
+.cell {
+    width: 12.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    user-select: none;
+    z-index: 0;
+}
+
+.dark-cell {
+    background: #3f1009a0;
+    background: #290a05a0;
+    background: #8f8f8f4f;
+    background: #0e1c414f;
+    background: url(../assets/textures/black-marble-cell-texture.jpg);
+    background-size: 400%;
+    color: #cccccc;
+}
+
+.light-cell {
+    background: #ffffff50;
+    background: #00000050;
+    background: #ffffffc0;
+    background: #d7d6ffc5;
+    background: url(../assets/textures/white-marble-cell-texture.jpg);
+    background-size: 200%;
+}
+
+.allowed-cell::after {
+    content: '';
+    width: 35%;
+    height: 35%;
+    background-color: #00ffdda8;
+    background-color: #ff0b008c;
+    position: absolute;
+}
+
+.allowed-cell-enemy::after {
+    content: '';
+    width: 90%;
+    height: 90%;
+    background-color: #00ffdd7e;
+    background-color: #ff0d0069;
+    position: absolute;
+}
+
+.under-check::after {
+    content: '';
+    background-color: #ff972c54;
+    /* background: 45% 45% / 350% no-repeat url(../assets/explosion-giphy.gif); */
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.piece {
+    width: 100%;
+    height: 100%;
+    opacity: 2;
+    cursor: grab;
+    z-index: 2;
+    position: absolute;
+}
+
+.rook-dark {
+    background: url(../assets/standart-pieces/rook-dark.png);
+    background-size: contain;
+}
+.bishop-dark {
+    background: url(../assets/standart-pieces/bishop-dark.png);
+    background-size: contain;
+}
+.knight-dark {
+    background: url(../assets/standart-pieces/knight-dark.png);
+    background-size: contain;
+}
+.queen-dark {
+    background: url(../assets/standart-pieces/queen-dark.png);
+    background-size: contain;
+}
+.king-dark {
+    background: url(../assets/standart-pieces/king-dark.png);
+    background-size: contain;
+}
+.pawn-dark {
+    background: url(../assets/standart-pieces/pawn-dark.png);
+    background-size: contain;
+}
+.rook-light {
+    background: url(../assets/standart-pieces/rook-light.png);
+    background-size: contain;
+}
+.bishop-light {
+    background: url(../assets/standart-pieces/bishop-light.png);
+    background-size: contain;
+}
+.knight-light {
+    background: url(../assets/standart-pieces/knight-light.png);
+    background-size: contain;
+}
+.queen-light {
+    background: url(../assets/standart-pieces/queen-light.png);
+    background-size: contain;
+}
+.king-light {
+    background: url(../assets/standart-pieces/king-light.png);
+    background-size: contain;
+}
+.pawn-light {
+    background: url(../assets/standart-pieces/pawn-light.png);
+    background-size: contain;
+}
+
+.moves-history-controllers {
+    color: #008cff;
+    display: flex;
+    justify-content: space-between;
+    /* align-self: center; */
+    width: 80px;
+    margin: 0 0 0 10px;
+    
+}
+
+.moves-history-controllers__item {
+    cursor: pointer;
+    transition: 0.2s;
+}
+.moves-history-controllers__item:active {
+    transform: scale(0.8)
+}
+
+#history-ra, #history-la {
+    font-size: 20px;
+    color: #008cff;
+}
+
+.gameover-modal {
+    position: absolute;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    animation: disappearance 10s linear;
+}
+@keyframes disappearance {
+    0% {
+        background:#010c1bc9;
+    }
+    100% {
+        background:#010c1b00;
+    }
+}
+
+.gameover-modal__title {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-weight: bolder;
+
+    background: linear-gradient(45deg, rgb(0, 255, 225) 0%, rgb(233, 0, 176) 6%, rgb(124, 0, 255) 13%, rgb(0, 255, 225) 20%, rgb(233, 0, 176) 26%, rgb(124, 0, 255) 33%, rgb(0, 255, 225) 40%, rgb(233, 0, 176) 46%, rgb(124, 0, 255) 53%, rgb(0, 255, 225) 60%, rgb(233, 0, 176) 66%, rgb(124, 0, 255) 73%, rgb(0, 255, 225) 80%, rgb(233, 0, 176) 86%, rgb(124, 0, 255) 93%);
+    background-size: 1500% 1500%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: gradient 8s linear infinite alternate, scale 1s ease infinite alternate;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+	}
+	100% {
+		background-position: 100% 50%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+	}
+}
+
+@keyframes scale {
+	0% {
+		font-size: 340%;
+	}
+	100% {
+		font-size: 320%;
+	}
+}
+
+.promotion-modal {
+    position: absolute;
+    z-index: 1001;
+    background: #dd9d80b4;
+    border-radius: 20px;
+    box-shadow: 0 0 5px black;
+}
+
+.piece-modal {
+    width: 87.5px; 
+    height: 87.5px;
+    cursor: pointer;
+}
