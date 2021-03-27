@@ -1,7 +1,3 @@
-// function print(...content) {
-//     console.log(...content);
-// }
-
 const container = document.querySelector('.container')
 const resizables = document.querySelectorAll('.resizable');
 const field = document.querySelector('.resizable');
@@ -41,8 +37,6 @@ resizer.addEventListener('mousedown', e => {
     window.addEventListener('mousemove', diagonalMoveBoth)
 
 })
-
-// container.addEventListener('mousemove', onMove)
 
 function diagonalMoveX(e) {
     const distance = (e.clientX - coordinates.x + offsets.x)// * 1.7;
