@@ -8,7 +8,7 @@ const resizer = document.querySelector('.resizer#se');
 let initialSize = 0;
 
 const limits = {
-    maxBoardSize: 740,
+    maxBoardSize: 620,
     minBoardSize: 280,
 }
 
