@@ -9,7 +9,6 @@ const resizer = document.querySelector('.resizer#se');
 
 // setCellSize(getSize(board).width)
 
-
 let initialSize = 0;
 
 const limits = {

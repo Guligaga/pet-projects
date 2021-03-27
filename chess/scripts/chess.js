@@ -13,31 +13,6 @@ const boardThemeSelector = el('#board-theme');
 const promotionModal = el('.promotion-modal');
 const gameoverModal = el('.gameover-modal');
 
-// Paint light and dark cells
-
-rows.forEach((row, i) => {
-    const cells = els(`#${row.id} .cell`);
-    if (i % 2 === 0) {
-        paintCells(cells, 'light')
-    } else {
-        paintCells(cells, 'dark')
-    }
-})
-
-function paintCells(cells, order) {
-    const combination = {
-        light: ['light-cell', 'dark-cell'],
-        dark: ['dark-cell', 'light-cell']
-    }
-    cells.forEach((cell, i) => {
-        if (i % 2 === 0) {
-            cell.classList.add(combination[order][0]);
-        } else {
-            cell.classList.add(combination[order][1]);
-        }
-    })
-}
-
 // set Positions and Coordinates ////////////////////////////////////////////////////////////////////////////////////
 
 const objOfCells = {
@@ -345,21 +320,86 @@ const objOfPieces = {
         wing: 'king',
     },
 }
-const movesHistory = [];
 const theme = {
     forBoard: 'marble',
     forPieces: 'glass'
 }
-// setCellsCoordinates();
-// setPiecesSize();
+const movesHistory = [];
+
+const cellsCoordinates = {
+    a8: [1,8],
+    b8: [2,8],
+    c8: [3,8],
+    d8: [4,8],
+    e8: [5,8],
+    f8: [6,8],
+    g8: [7,8],
+    h8: [8,8],
+    a7: [1,7],
+    b7: [2,7],
+    c7: [3,7],
+    d7: [4,7],
+    e7: [5,7],
+    f7: [6,7],
+    g7: [7,7],
+    h7: [8,7],
+    a6: [1,6],
+    b6: [2,6],
+    c6: [3,6],
+    d6: [4,6],
+    e6: [5,6],
+    f6: [6,6],
+    g6: [7,6],
+    h6: [8,6],
+    a5: [1,5],
+    b5: [2,5],
+    c5: [3,5],
+    d5: [4,5],
+    e5: [5,5],
+    f5: [6,5],
+    g5: [7,5],
+    h5: [8,5],
+    a4: [1,4],
+    b4: [2,4],
+    c4: [3,4],
+    d4: [4,4],
+    e4: [5,4],
+    f4: [6,4],
+    g4: [7,4],
+    h4: [8,4],
+    a3: [1,3],
+    b3: [2,3],
+    c3: [3,3],
+    d3: [4,3],
+    e3: [5,3],
+    f3: [6,3],
+    g3: [7,3],
+    h3: [8,3],
+    a2: [1,2],
+    b2: [2,2],
+    c2: [3,2],
+    d2: [4,2],
+    e2: [5,2],
+    f2: [6,2],
+    g2: [7,2],
+    h2: [8,2],
+    a1: [1,1],
+    b1: [2,1],
+    c1: [3,1],
+    d1: [4,1],
+    e1: [5,1],
+    f1: [6,1],
+    g1: [7,1],
+    h1: [8,1],
+}
 
 function setCellsCoordinates() {
     cells.forEach(cell => {
         // cell.textContent = cell.dataset.coordinates; //////////////////////////////////////////////////
         objOfCells[cell.dataset.codename] = {
             side: objOfCells[cell.dataset.codename].side,
-            x: +cell.dataset.coordinates[1],
-            y: +cell.dataset.coordinates[3],
+            x: cellsCoordinates[cell.dataset.codename][0],
+            y: cellsCoordinates[cell.dataset.codename][1],
             left: cell.getBoundingClientRect().left - board.getBoundingClientRect().left - 2,
             top: cell.getBoundingClientRect().top - board.getBoundingClientRect().top - 2,
         }
@@ -1104,7 +1144,6 @@ function turnOverCellsPlacement(side) {
     setPiecesSize();
 }
 
-// cells.forEach(cell => cell.textContent = cell.dataset.codename)
 
 // setup board state from FEN //////////////////////////////////////////////////////////////////////////////////////////////////
 // const tempObj = {};
