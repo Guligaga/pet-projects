@@ -10,6 +10,8 @@ let pieces = els('.piece');
 const sideSelector = el('#side-selector');
 const piecesThemeSelector = el('#pieces-theme');
 const boardThemeSelector = el('#board-theme');
+const resetBtn = el('#reset-game');
+
 const promotionModal = el('.promotion-modal');
 const gameoverModal = el('.gameover-modal');
 
@@ -321,8 +323,8 @@ const objOfPieces = {
     },
 }
 const theme = {
-    forBoard: 'marble',
-    forPieces: 'glass'
+    forBoard: localStorage.getItem('boardTheme') || 'marble',
+    forPieces: localStorage.getItem('piecesTheme') || 'glass'
 }
 const movesHistory = [];
 
@@ -570,8 +572,11 @@ function applyPieceMove(e) {
 
 // add move to history
     if(moveOptions.moveIndex !== movesHistory.length - 1) return;
-
     addToHistory(setFEN())
+
+// Add history to localStorage
+    localStorage.setItem('history', JSON.stringify(movesHistory))
+
 // check if position repeats third time    
     setRepeatedMoves();
 }
@@ -698,7 +703,6 @@ function setEnPassant(pieceName, currentPiece, previousCellName) {
     return {mes: 'distance is 1'};
 }
 
-// addToHistory(init('rnbqkbnr/ppppP1pp/8/8/8/8/PPP1pPPP/RNBQKBNR w KQkq - 0 5'))
 
 function pawnPromotion(pieceName, currentPiece) {
     if(!pieceName.startsWith('pawn')) return moveOptions.isPromoted = false;
@@ -1471,20 +1475,40 @@ window.addEventListener('keydown', e => {
     
 })
 
-// Themes switch
+// Themes switch //////////////////////////////////////////////////////////////////////////////////////
+window.addEventListener('DOMContentLoaded', e => {
+    board.dataset.theme = theme.forBoard;
+    cells.forEach(cell => {
+        cell.dataset.theme = theme.forBoard;
+    })
+
+    piecesThemeSelector.querySelector(`option[value="${theme.forPieces}"]`)
+        .setAttribute('selected', '');
+    boardThemeSelector.querySelector(`option[value="${theme.forBoard}"]`)
+        .setAttribute('selected', '');
+})
+
 piecesThemeSelector.addEventListener('change', e => {
+    e.currentTarget.querySelector('option[selected]').removeAttribute('selected');
+    e.target.selectedOptions[0].setAttribute('selected', '')
+
     theme.forPieces = e.currentTarget.value;
     els('.piece').forEach(piece => {
         piece.dataset.theme = theme.forPieces;
     })
+    localStorage.setItem('piecesTheme', theme.forPieces)
 })
 
 boardThemeSelector.addEventListener('change', e => {
+    e.currentTarget.querySelector('option[selected]').removeAttribute('selected');
+    e.target.selectedOptions[0].setAttribute('selected', '')
+
     theme.forBoard = e.currentTarget.value;
     board.dataset.theme = theme.forBoard;
     cells.forEach(cell => {
         cell.dataset.theme = theme.forBoard;
     })
+    localStorage.setItem('boardTheme', theme.forBoard)
 })
 
 
@@ -1493,8 +1517,22 @@ boardThemeSelector.addEventListener('change', e => {
 // print('rnbqk3/ppppppPp/7r/6p1/4n3/7R/PPPPPPP1/RNBQKBN1 w Qq - 0 8', 'promotion')
 // print('4k1n1/3b4/8/8/R1B5/5N2/8/6K1 b - - 1 30', 'draw nEp')
 
+// Game start and reset
+
+resetBtn.addEventListener('click', e => {
+    movesHistory.length = 0;
+    localStorage.setItem('history', null)
+    startGame()
+})
+
 function startGame() {
-    const startPosition = init('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
-    addToHistory(startPosition);
+    const history = JSON.parse(localStorage.getItem('history'))
+    if(Array.isArray(history)) {
+        init(history.pop())
+        movesHistory.push(...history)
+    } else {
+        const startPosition = init('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
+        addToHistory(startPosition);
+    }
 }
 startGame();
