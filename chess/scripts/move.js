@@ -57,10 +57,11 @@ function setMoveAimCellname(currentPiece, droppable) {
     const previousCellName = currentPiece.cell
     const currentCellName = droppable.dataset.codename || objOfPieces[droppable.id].cell
 // Check if move to current cell is allowed
-    let cellName = currentPiece.allowedCells.includes(currentCellName) ?
-        currentCellName : previousCellName;
+    let cellName = currentPiece.allowedCells.includes(currentCellName)
+        ? currentCellName : previousCellName;
 // Check if it is current side turn 
-    cellName = moveOptions.whoseTurn === currentPiece.side? currentCellName : previousCellName;
+    cellName = cellName === currentCellName && moveOptions.whoseTurn === currentPiece.side
+        ? currentCellName : previousCellName;
     return {
         previousCellName,
         currentCellName,
