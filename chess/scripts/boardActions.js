@@ -1,23 +1,25 @@
 // Drag & Drop pieces ///////////////////////////////////////////////////////////////////////////////////////////////
 
-function pieceDragHandler(piece) {
-    piece.addEventListener('mousedown', e => {
-        // print('mousedown')
-        currentDraggablePiece = piece;
+board.addEventListener('mousedown', e => {
+    // print('mousedown')
+    if(!e.target.classList.contains('piece')) return;
+    const piece = e.target;
+    currentDraggablePiece = piece;
 
-        piece.style.setProperty('cursor', 'grabbing')
-        piece.style.setProperty('z-index', 1000)
+    piece.style.setProperty('cursor', 'grabbing')
+    piece.style.setProperty('z-index', 1000)
 
-        renderAllowedMoves(piece.id)
+    renderAllowedMoves(piece.id)
 
-        moveAt(e);
-        window.addEventListener('mousemove', dragPiece)
-    })
+    moveAt(e);
+    window.addEventListener('mousemove', dragPiece)
 
     piece.addEventListener('dragstart', e => {
         e.preventDefault();
     })
-}
+})
+
+    
 
 function renderAllowedMoves(pieceName) {
     objOfPieces[pieceName].allowedCells = filterIfUnderCheck(pieceName, getAllowedMoves(pieceName))

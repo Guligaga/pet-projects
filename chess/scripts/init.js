@@ -88,7 +88,6 @@ function renderPositions() {
     })
 
     pieces = els('.piece');
-    pieces.forEach(pieceDragHandler);
 
     setCellsCoordinates();
     setPiecesSize();
