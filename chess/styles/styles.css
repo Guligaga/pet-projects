@@ -6,8 +6,8 @@ body {
     background: var(--body-background)
 }
 .nav-options {
-    margin: 10px 0;
-    padding: 20px;
+    margin: 0 0 10px 0;
+    padding: 23px;
     display: flex;
     background: rgb(160, 161, 180);
 }

@@ -115,6 +115,51 @@
     background: url(../assets/standart-pieces/pawn-light.png);
 }
 
+/* Modern pieces */
+
+.rook-dark[data-theme="modern"] {
+    background: url(../assets/modern-pieces/rook-dark.png);
+}
+.bishop-dark[data-theme="modern"] {
+    background: url(../assets/modern-pieces/bishop-dark.png);
+}
+.knight-dark[data-theme="modern"] {
+    background: url(../assets/modern-pieces/knight-dark.png);
+}
+.queen-dark[data-theme="modern"] {
+    background: url(../assets/modern-pieces/queen-dark.png);
+}
+.king-dark[data-theme="modern"] {
+    background: url(../assets/modern-pieces/king-dark.png);
+}
+.pawn-dark[data-theme="modern"] {
+    background: url(../assets/modern-pieces/pawn-dark.png);
+}
+.rook-light[data-theme="modern"] {
+    background: url(../assets/modern-pieces/rook-dark.png);
+    filter: invert(1);
+}
+.bishop-light[data-theme="modern"] {
+    background: url(../assets/modern-pieces/bishop-dark.png);
+    filter: invert(1);
+}
+.knight-light[data-theme="modern"] {
+    background: url(../assets/modern-pieces/knight-dark.png);
+    filter: invert(1);
+}
+.queen-light[data-theme="modern"] {
+    background: url(../assets/modern-pieces/queen-dark.png);
+    filter: invert(1);
+}
+.king-light[data-theme="modern"] {
+    background: url(../assets/modern-pieces/king-dark.png);
+    filter: invert(1);
+}
+.pawn-light[data-theme="modern"] {
+    background: url(../assets/modern-pieces/pawn-dark.png);
+    filter: invert(1);
+}
+
 /* Leather board */
 
 .chess-board[data-theme="leather"] {
