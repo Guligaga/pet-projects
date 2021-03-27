@@ -10,33 +10,10 @@ let pieces = els('.piece');
 const sideSelector = el('#side-selector');
 const piecesThemeSelector = el('#pieces-theme');
 const boardThemeSelector = el('#board-theme');
+const resetBtn = el('#reset-game');
+
 const promotionModal = el('.promotion-modal');
 const gameoverModal = el('.gameover-modal');
-
-// Paint light and dark cells
-
-rows.forEach((row, i) => {
-    const cells = els(`#${row.id} .cell`);
-    if (i % 2 === 0) {
-        paintCells(cells, 'light')
-    } else {
-        paintCells(cells, 'dark')
-    }
-})
-
-function paintCells(cells, order) {
-    const combination = {
-        light: ['light-cell', 'dark-cell'],
-        dark: ['dark-cell', 'light-cell']
-    }
-    cells.forEach((cell, i) => {
-        if (i % 2 === 0) {
-            cell.classList.add(combination[order][0]);
-        } else {
-            cell.classList.add(combination[order][1]);
-        }
-    })
-}
 
 // set Positions and Coordinates ////////////////////////////////////////////////////////////////////////////////////
 
@@ -345,21 +322,86 @@ const objOfPieces = {
         wing: 'king',
     },
 }
-const movesHistory = [];
 const theme = {
-    forBoard: 'marble',
-    forPieces: 'glass'
+    forBoard: localStorage.getItem('boardTheme') || 'marble',
+    forPieces: localStorage.getItem('piecesTheme') || 'glass'
 }
-// setCellsCoordinates();
-// setPiecesSize();
+const movesHistory = [];
+
+const cellsCoordinates = {
+    a8: [1,8],
+    b8: [2,8],
+    c8: [3,8],
+    d8: [4,8],
+    e8: [5,8],
+    f8: [6,8],
+    g8: [7,8],
+    h8: [8,8],
+    a7: [1,7],
+    b7: [2,7],
+    c7: [3,7],
+    d7: [4,7],
+    e7: [5,7],
+    f7: [6,7],
+    g7: [7,7],
+    h7: [8,7],
+    a6: [1,6],
+    b6: [2,6],
+    c6: [3,6],
+    d6: [4,6],
+    e6: [5,6],
+    f6: [6,6],
+    g6: [7,6],
+    h6: [8,6],
+    a5: [1,5],
+    b5: [2,5],
+    c5: [3,5],
+    d5: [4,5],
+    e5: [5,5],
+    f5: [6,5],
+    g5: [7,5],
+    h5: [8,5],
+    a4: [1,4],
+    b4: [2,4],
+    c4: [3,4],
+    d4: [4,4],
+    e4: [5,4],
+    f4: [6,4],
+    g4: [7,4],
+    h4: [8,4],
+    a3: [1,3],
+    b3: [2,3],
+    c3: [3,3],
+    d3: [4,3],
+    e3: [5,3],
+    f3: [6,3],
+    g3: [7,3],
+    h3: [8,3],
+    a2: [1,2],
+    b2: [2,2],
+    c2: [3,2],
+    d2: [4,2],
+    e2: [5,2],
+    f2: [6,2],
+    g2: [7,2],
+    h2: [8,2],
+    a1: [1,1],
+    b1: [2,1],
+    c1: [3,1],
+    d1: [4,1],
+    e1: [5,1],
+    f1: [6,1],
+    g1: [7,1],
+    h1: [8,1],
+}
 
 function setCellsCoordinates() {
     cells.forEach(cell => {
         // cell.textContent = cell.dataset.coordinates; //////////////////////////////////////////////////
         objOfCells[cell.dataset.codename] = {
             side: objOfCells[cell.dataset.codename].side,
-            x: +cell.dataset.coordinates[1],
-            y: +cell.dataset.coordinates[3],
+            x: cellsCoordinates[cell.dataset.codename][0],
+            y: cellsCoordinates[cell.dataset.codename][1],
             left: cell.getBoundingClientRect().left - board.getBoundingClientRect().left - 2,
             top: cell.getBoundingClientRect().top - board.getBoundingClientRect().top - 2,
         }
@@ -530,8 +572,11 @@ function applyPieceMove(e) {
 
 // add move to history
     if(moveOptions.moveIndex !== movesHistory.length - 1) return;
-
     addToHistory(setFEN())
+
+// Add history to localStorage
+    localStorage.setItem('history', JSON.stringify(movesHistory))
+
 // check if position repeats third time    
     setRepeatedMoves();
 }
@@ -658,7 +703,6 @@ function setEnPassant(pieceName, currentPiece, previousCellName) {
     return {mes: 'distance is 1'};
 }
 
-// addToHistory(init('rnbqkbnr/ppppP1pp/8/8/8/8/PPP1pPPP/RNBQKBNR w KQkq - 0 5'))
 
 function pawnPromotion(pieceName, currentPiece) {
     if(!pieceName.startsWith('pawn')) return moveOptions.isPromoted = false;
@@ -1104,7 +1148,6 @@ function turnOverCellsPlacement(side) {
     setPiecesSize();
 }
 
-// cells.forEach(cell => cell.textContent = cell.dataset.codename)
 
 // setup board state from FEN //////////////////////////////////////////////////////////////////////////////////////////////////
 // const tempObj = {};
@@ -1432,20 +1475,40 @@ window.addEventListener('keydown', e => {
     
 })
 
-// Themes switch
+// Themes switch //////////////////////////////////////////////////////////////////////////////////////
+window.addEventListener('DOMContentLoaded', e => {
+    board.dataset.theme = theme.forBoard;
+    cells.forEach(cell => {
+        cell.dataset.theme = theme.forBoard;
+    })
+
+    piecesThemeSelector.querySelector(`option[value="${theme.forPieces}"]`)
+        .setAttribute('selected', '');
+    boardThemeSelector.querySelector(`option[value="${theme.forBoard}"]`)
+        .setAttribute('selected', '');
+})
+
 piecesThemeSelector.addEventListener('change', e => {
+    e.currentTarget.querySelector('option[selected]').removeAttribute('selected');
+    e.target.selectedOptions[0].setAttribute('selected', '')
+
     theme.forPieces = e.currentTarget.value;
     els('.piece').forEach(piece => {
         piece.dataset.theme = theme.forPieces;
     })
+    localStorage.setItem('piecesTheme', theme.forPieces)
 })
 
 boardThemeSelector.addEventListener('change', e => {
+    e.currentTarget.querySelector('option[selected]').removeAttribute('selected');
+    e.target.selectedOptions[0].setAttribute('selected', '')
+
     theme.forBoard = e.currentTarget.value;
     board.dataset.theme = theme.forBoard;
     cells.forEach(cell => {
         cell.dataset.theme = theme.forBoard;
     })
+    localStorage.setItem('boardTheme', theme.forBoard)
 })
 
 
@@ -1454,8 +1517,22 @@ boardThemeSelector.addEventListener('change', e => {
 // print('rnbqk3/ppppppPp/7r/6p1/4n3/7R/PPPPPPP1/RNBQKBN1 w Qq - 0 8', 'promotion')
 // print('4k1n1/3b4/8/8/R1B5/5N2/8/6K1 b - - 1 30', 'draw nEp')
 
+// Game start and reset
+
+resetBtn.addEventListener('click', e => {
+    movesHistory.length = 0;
+    localStorage.setItem('history', null)
+    startGame()
+})
+
 function startGame() {
-    const startPosition = init('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
-    addToHistory(startPosition);
+    const history = JSON.parse(localStorage.getItem('history'))
+    if(Array.isArray(history)) {
+        init(history.pop())
+        movesHistory.push(...history)
+    } else {
+        const startPosition = init('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
+        addToHistory(startPosition);
+    }
 }
 startGame();
