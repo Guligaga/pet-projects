@@ -1,8 +1,3 @@
-function print(...content) {
-  console.log(...content);
-}
-
-
 const tasks = [
   {
     _id: '5d2ca9e2e03d40b326596aa7',
@@ -44,9 +39,16 @@ function setObj(acc, item) {
   acc[item._id] = item;
   return acc;
 }
-const objOfTasks = JSON.parse(localStorage.getItem('taskList')) || tasks.reduce(setObj, {});
+
+function setTasks() {
+  const lsTasks = JSON.parse(localStorage.getItem('taskList'));
+  return Object.keys(lsTasks).length ? lsTasks : tasks.reduce(setObj, {})
+}
+const objOfTasks = setTasks();
+
 
 // Elements
+
 const listContainer = document.querySelector('.tasks-list-section .list-group');
 const form = document.querySelector('form[name=addTask]');
 const inputTitle = form.querySelector('#title');
@@ -146,6 +148,7 @@ function themeApply(themeName) {
 }
 
 // Events
+
 const defaultTheme = localStorage.getItem('themeCSS') || 'default';
 themeApply(defaultTheme);
 
@@ -188,7 +191,6 @@ function createTaskCard({_id, title, body} = {}) {
   `);
   return li;
 }
-
 
 function checkEmptyField(field) {
   const message = `${field.placeholder} is empty! Please, fill it.`;
