@@ -167,7 +167,7 @@ export function setCheckAndMateActions(side) {
     if(!allyKing.underCheck) {
         if(moveOptions.checkingPieces.length && moveOptions.checkingPieces[0].side !== side) {
             moveOptions.checkingPieces = [];
-            el(`#${allyKing.cell}`).classList.remove('under-check');
+            el('.under-check').classList.remove('under-check');
         }
     }
 }
