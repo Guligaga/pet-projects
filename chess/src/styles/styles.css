@@ -146,6 +146,7 @@ body {
     cursor: grab;
     z-index: 2;
     position: absolute;
+    transition: all -0.1s linear;
 }
 
 .piece[data-theme] {
@@ -243,7 +244,7 @@ body {
 }
 
 .game-menu {
-    margin: 40px 0;
+    margin: 40px 0 0 0;
     padding: 20px;
     display: flex;
     background: rgb(92, 90, 124);;
