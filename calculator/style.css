@@ -1,0 +1,49 @@
+* {
+    /* box-sizing: border-box; */
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    border: 1px solid green;
+    margin: 40px auto;
+    width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#display {
+    width: 100%;
+    height: 60px;
+    font-size: 30px;
+}
+
+.btn {
+    width: 25%;
+    height: 60px;
+    border-radius: 0;
+    border: 1px solid black;
+    font-size: 20px;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn:active {
+    box-shadow: inset -1px -1px 5px rgba(0, 0, 0, 0.5);
+}
+
+#clean {
+    width: 75%;
+}
+
+.zero {
+    width: 50%;
+}
+
+.operation, #equal {
+    background-color: burlywood;
+}
