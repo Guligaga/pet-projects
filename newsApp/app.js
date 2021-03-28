@@ -1,24 +1,20 @@
-// const key23 = '0cdf8d12e2d547f293bf44b597ab88f3';
-// const keyGl = 'e79b7dc9701a4d73b80ec3ea92841718';
-// const cCodes = ['au', 'ca', 'gb', 'ie', 'in', 'my', 'ng', 'nz', 'ph', 'sa', 'sg', 'us', 'za']
-
 function Service() {
     this.url = 'http://news-api-v2.herokuapp.com';
     this.apiKey = '0cdf8d12e2d547f293bf44b597ab88f3';
     this.ajax = new Ajax(this.url);
     this.basicCountry = 'us';
-    this.basicImg = './basic-img.png'
+    this.basicImg = './assets/basic-img.png'
     this.everything = function(q, callback) {
         const {ajax, apiKey} = this;
         const query = ajax.setQuery({q, apiKey});
         ajax.get('everything', query, callback);
-    }
+    };
     this.topHeadlines = function(country, callback) {
         const {ajax, apiKey, basicCountry} = this;
         country = country || basicCountry;
         const query = ajax.setQuery({country, apiKey});
         ajax.get('top-headlines', query, callback);
-    }
+    };
     this.categoryHeadlines = function(country, category, callback) {
         const {ajax, apiKey, basicCountry} = this;
         country = country || basicCountry;
@@ -31,7 +27,7 @@ const newsService = new Service();
 document.addEventListener('DOMContentLoaded', () => {
     preloader.add();
     newsService.topHeadlines(newsService.basicCountry, onGetResponse)
-})
+});
 
 function onGetResponse(res, err) {
     preloader.remove();
@@ -46,7 +42,6 @@ function onGetResponse(res, err) {
 function renderNews(news) {
     const newsContainer = document.querySelector('.news-container .row');
     newsContainer.innerHTML = '';
-    // const fragment = document.createDocumentFragment();
     news.forEach(item => {
         newsContainer.append(newsTemplate(item));
     })
@@ -93,7 +88,7 @@ searchForm.addEventListener('submit', e => {
         newsService.categoryHeadlines(searchCountry.value, searchCategory.value, onGetResponse)
     }
     searchForm.reset();
-})
+});
 
 function notification(mes, type = 'success') {
     M.toast({ html: mes, classes: type })
@@ -113,11 +108,11 @@ const preloader = {
             loader.remove();
         }
     }
-}
+};
 
 window.addEventListener('error', e => {
-    console.log(e)
+    console.log(e);
     if(e.target.classList.contains('news-img')) {
         e.target.src = newsService.basicImg;
     }
-}, true)
+}, true);
