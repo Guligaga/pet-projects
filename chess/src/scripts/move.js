@@ -66,6 +66,7 @@ export function applyPieceMove(e) {
 
 // Add history to localStorage
     localStorage.setItem('history', JSON.stringify(movesHistory));
+    localStorage.setItem('moveOptions', JSON.stringify(moveOptions));
 
 // check if position repeats third time
     setRepeatedMoves();
