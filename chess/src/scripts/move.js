@@ -264,8 +264,6 @@ function updateState(currentPiece, cellName, previousCellName) {
 }
 
 export function updateAllowedCells(side) {
-    console.log('updateAllowedCells', pieces)
-
     pieces.all.forEach(({id: pieceName}) => {
         const pieceData = objOfPieces[pieceName];
 
