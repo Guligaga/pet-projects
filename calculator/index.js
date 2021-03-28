@@ -158,6 +158,6 @@ function calculate() {
         default:
             res = +calculation.firstV;
     }
-    console.log(res.toFixed(9))
-    return res.toFixed(9).replace(/.?0+$/, '')
+    res = res.toFixed(9).replace(/0+$/, '');
+    return parseFloat(res)
 }
