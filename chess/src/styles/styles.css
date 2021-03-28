@@ -112,7 +112,7 @@ body {
 }
 
 .light-cell {
-    color: #000;   
+    color: #000;
 }
 
 .allowed-cell::after {
@@ -238,9 +238,13 @@ body {
 }
 
 .piece-modal {
-    width: 87.5px; 
+    width: 87.5px;
     height: 87.5px;
     cursor: pointer;
+}
+
+.piece-modal[data-theme] {
+    background-size: contain;
 }
 
 .game-menu {
