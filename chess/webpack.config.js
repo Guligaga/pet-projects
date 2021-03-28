@@ -8,14 +8,12 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const devMode = process.env.NODE_ENV !== 'production';
 const prodMode = !devMode;
 
-const relPublicPath = path.relative(path.join(__dirname, 'dist', 'styles'), path.join(__dirname, 'dist'));
 
 const filename = ext => devMode ? `[name].${ext}` : `[name].[hash].${ext}`;
-const fileLoader = assetType => ({
+const fileLoader = () => ({
         loader: 'file-loader',
         options: {
-            name: prodMode ? '[name].[hash].[ext]' : '[name].[ext]',
-            outputPath: assetType,
+            name: prodMode ? '[path][name].[hash].[ext]' : '[path][name].[ext]',
         },
 });
 
@@ -47,14 +45,14 @@ module.exports = {
         new MiniCSSExtractPlugin({
             filename: filename('css'),
         }),
-        // new CopyWebpackPlugin({
-        //     patterns: [
-        //         {
-        //             from: path.resolve(__dirname, 'src', 'assets', 'favicon.png'),
-        //             to: path.resolve(__dirname, 'dist')
-        //         }
-        //     ]
-        // }),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, 'src', 'assets', 'favicon.png'),
+                    to: path.resolve(__dirname, 'dist', 'assets')
+                }
+            ]
+        }),
     ],
     module: {
         rules: [
@@ -63,17 +61,17 @@ module.exports = {
                 use: [{
                     loader: MiniCSSExtractPlugin.loader,
                     options: {
-                        publicPath: relPublicPath,
+                        publicPath: './',
                     }
                 }, 'css-loader'],
-            }, 
+            },
             {
                 test: /\.(png|svg|jpe?g|gif)/,
-                use: fileLoader('assets')
+                use: fileLoader()
             },
             {
                 test: /\.(ttf|woff2?|eot)/,
-                use: fileLoader('fonts'),
+                use: fileLoader(),
             },
             {
                 test: /\.js$/,
@@ -83,7 +81,7 @@ module.exports = {
                     options: {
                         presets: ['@babel/preset-env'],
                     },
-                    
+
                 }
             }
         ]
