@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morse</title>
+    <link rel="shortcut icon" href="assets/faviconMRZ.png" type="image/x-icon">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <div class="translator-container">
+        <h1 class="translator-title">
+            Translate text into Morse Code
+        </h1>
+        <form action="" id="translator" autocomplete="off">
+            <label for="to-translate">Type text to translate</label>
+            <input type="text" class="translator__text" id="to-translate" spellcheck="false">
+            <div class="translator__buttons">
+                <input type="submit" class="translator__btn" value="Translate">
+                <input type="button" class="translator__btn" id="translator-play" value="Play">
+            </div>
+            <label for="translated">Result of translation</label>
+            <input type="text" class="translator__text" id="translated" disabled>
+        </form>
+    </div>
+    <audio id="dot-sound">
+        <source src="assets/morse-dot-new-min.mp3">
+    </audio>
+    <audio id="dash-sound">
+        <source src="assets/morse-dash-new-min.mp3">
+    </audio>
+    <script src="./morse.js"></script>
+</body>
+</html>
