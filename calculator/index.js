@@ -24,7 +24,6 @@ const isActive = {
 
 numbers.forEach(number => {
     number.addEventListener('click', e => {
-        // debugger;
         if(isActive.equal) {
             calculation.firstV = '';
             calculation.secondV = '';
@@ -42,7 +41,7 @@ dot.addEventListener('click', () => {
     if(display.value.includes('.')) {
         return;
     }
-    if(display.value === 0 && ! isActive.operator) {
+    if(display.value === '0' && !isActive.operator) {
         fillDisplay('0');
     }
     fillDisplay('.');
@@ -100,7 +99,6 @@ function operationAfterEqual() {
 }
 
 equal.addEventListener('click', e => {
-    // debugger;
     enable(e.currentTarget);
     if(isActive.equal) {
         calculation.firstV = display.value;
@@ -108,7 +106,8 @@ equal.addEventListener('click', e => {
         display.value = calculation.firstV = calculate();
         return;
     }
-    if(calculation.firstV === '') return;
+    // if(!calculation.operation) return;
+    calculation.firstV = calculation.firstV || 0;
     setSecondValue();
     display.value = calculation.firstV = calculate();
     isActive.operator = false;
@@ -139,17 +138,10 @@ function enable(target) {
         })
     }
 }
-function checkSecond() {
-    for (const key in calculation) {
-        if(calculation[key] === '') {
-            return calculation.firstV;
-        }
-    }
-}
 
 function calculate() {
-    checkSecond();
     let res;
+    console.log(calculation)
     switch(calculation.operation) {
         case '+':
             res = +calculation.firstV + +calculation.secondV;
@@ -163,6 +155,9 @@ function calculate() {
         case '/':
             res = +calculation.firstV / calculation.secondV;
             break;
+        default:
+            res = +calculation.firstV;
     }
-    return String(res);
+    console.log(res.toFixed(9))
+    return res.toFixed(9).replace(/.?0+$/, '')
 }
