@@ -2,56 +2,52 @@ function print(...content) {
   console.log(...content);
 }
 
-{
-  const tasks = [
-    {
-      _id: '5d2ca9e2e03d40b326596aa7',
-      completed: true,
-      body:
-        'Occaecat non ea quis occaecat ad culpa amet deserunt incididunt elit fugiat pariatur. Exercitation commodo culpa in veniam proident laboris in. Excepteur cupidatat eiusmod dolor consectetur exercitation nulla aliqua veniam fugiat irure mollit. Eu dolor dolor excepteur pariatur aute do do ut pariatur consequat reprehenderit deserunt.\r\n',
-      title: 'Eu ea incididunt sunt consectetur fugiat non.',
-      timestamp: 1,
-    },
-    {
-      _id: '5d2ca9e29c8a94095c1288e0',
-      completed: false,
-      body:
-        'Aliquip cupidatat ex adipisicing veniam do tempor. Lorem nulla adipisicing et esse cupidatat qui deserunt in fugiat duis est qui. Est adipisicing ipsum qui cupidatat exercitation. Cupidatat aliqua deserunt id deserunt excepteur nostrud culpa eu voluptate excepteur. Cillum officia proident anim aliquip. Dolore veniam qui reprehenderit voluptate non id anim.\r\n',
-      title:
-        'Deserunt laborum id consectetur pariatur veniam occaecat occaecat tempor voluptate pariatur nulla reprehenderit ipsum.',
-        timestamp: 2,
-    },
-    {
-      _id: '5d2ca9e2e03d40b3232496aa7',
-      completed: true,
-      body:
-        'Occaecat non ea quis occaecat ad culpa amet deserunt incididunt elit fugiat pariatur. Exercitation commodo culpa in veniam proident laboris in. Excepteur cupidatat eiusmod dolor consectetur exercitation nulla aliqua veniam fugiat irure mollit. Eu dolor dolor excepteur pariatur aute do do ut pariatur consequat reprehenderit deserunt.\r\n',
-      title: 'Eu ea incididunt sunt consectetur fugiat non.',
-      timestamp: 3,
-    },
-    {
-      _id: '5d2ca9e29c8a94095564788e0',
-      completed: false,
-      body:
-        'Aliquip cupidatat ex adipisicing veniam do tempor. Lorem nulla adipisicing et esse cupidatat qui deserunt in fugiat duis est qui. Est adipisicing ipsum qui cupidatat exercitation. Cupidatat aliqua deserunt id deserunt excepteur nostrud culpa eu voluptate excepteur. Cillum officia proident anim aliquip. Dolore veniam qui reprehenderit voluptate non id anim.\r\n',
-      title:
-        'Deserunt laborum id consectetur pariatur veniam occaecat occaecat tempor voluptate pariatur nulla reprehenderit ipsum.',
-        timestamp: 4,
-    },
-  ];
-  
+
+const tasks = [
+  {
+    _id: '5d2ca9e2e03d40b326596aa7',
+    completed: true,
+    body:
+      'Occaecat non ea quis occaecat ad culpa amet deserunt incididunt elit fugiat pariatur. Exercitation commodo culpa in veniam proident laboris in. Excepteur cupidatat eiusmod dolor consectetur exercitation nulla aliqua veniam fugiat irure mollit. Eu dolor dolor excepteur pariatur aute do do ut pariatur consequat reprehenderit deserunt.\r\n',
+    title: 'Eu ea incididunt sunt consectetur fugiat non.',
+    timestamp: 1,
+  },
+  {
+    _id: '5d2ca9e29c8a94095c1288e0',
+    completed: false,
+    body:
+      'Aliquip cupidatat ex adipisicing veniam do tempor. Lorem nulla adipisicing et esse cupidatat qui deserunt in fugiat duis est qui. Est adipisicing ipsum qui cupidatat exercitation. Cupidatat aliqua deserunt id deserunt excepteur nostrud culpa eu voluptate excepteur. Cillum officia proident anim aliquip. Dolore veniam qui reprehenderit voluptate non id anim.\r\n',
+    title:
+      'Deserunt laborum id consectetur pariatur veniam occaecat occaecat tempor voluptate pariatur nulla reprehenderit ipsum.',
+      timestamp: 2,
+  },
+  {
+    _id: '5d2ca9e2e03d40b3232496aa7',
+    completed: true,
+    body:
+      'Occaecat non ea quis occaecat ad culpa amet deserunt incididunt elit fugiat pariatur. Exercitation commodo culpa in veniam proident laboris in. Excepteur cupidatat eiusmod dolor consectetur exercitation nulla aliqua veniam fugiat irure mollit. Eu dolor dolor excepteur pariatur aute do do ut pariatur consequat reprehenderit deserunt.\r\n',
+    title: 'Eu ea incididunt sunt consectetur fugiat non.',
+    timestamp: 3,
+  },
+  {
+    _id: '5d2ca9e29c8a94095564788e0',
+    completed: false,
+    body:
+      'Aliquip cupidatat ex adipisicing veniam do tempor. Lorem nulla adipisicing et esse cupidatat qui deserunt in fugiat duis est qui. Est adipisicing ipsum qui cupidatat exercitation. Cupidatat aliqua deserunt id deserunt excepteur nostrud culpa eu voluptate excepteur. Cillum officia proident anim aliquip. Dolore veniam qui reprehenderit voluptate non id anim.\r\n',
+    title:
+      'Deserunt laborum id consectetur pariatur veniam occaecat occaecat tempor voluptate pariatur nulla reprehenderit ipsum.',
+      timestamp: 4,
+  },
+];
+
 function setObj(acc, item) {
   acc[item._id] = item;
   return acc;
 }
-const objOfTasks = JSON.parse(localStorage.getItem('taskList')) || tasks.reduce(setObj, {})
+const objOfTasks = JSON.parse(localStorage.getItem('taskList')) || tasks.reduce(setObj, {});
+
 // Elements
 const listContainer = document.querySelector('.tasks-list-section .list-group');
-
-// const form = document.forms['addTask'];
-// const inputTitle = form.elements['title'];
-// const inputBody = form.elements['body'];
-
 const form = document.querySelector('form[name=addTask]');
 const inputTitle = form.querySelector('#title');
 const inputBody = form.querySelector('#body');
@@ -60,19 +56,6 @@ const themeSelector = document.querySelector('#themeSelect');
 
 
 // Styles
-const root = document.querySelector(':root');
-const rootStyle = window.getComputedStyle(root);
-// const rootStyle = window.getComputedStyle(document.documentElement);
-// const rootStyle = window.getComputedStyle(document.body);
-
-
-// print(document.body.style.getPropertyValue('--bg-gen'))
-// print(rootStyle.getPropertyValue('--bg-gen'));
-
-// document.body.style.setProperty('--bg-gen', 'black');
-// root.style.setProperty('--bg-gen', 'black');
-// print(rootStyle.getPropertyValue('--bg-gen'));
-
 const themes = {
   default: {
     '--base-text-color': '#212529',
@@ -149,11 +132,11 @@ const themes = {
   },
 };
 
-themeSelector.addEventListener('change', e => {
+themeSelector.addEventListener('change', () => {
   const theme = themeSelector.value;
   themeApply(theme);
   localStorage.setItem('themeCSS', theme)
-})
+});
 
 function themeApply(themeName) {
   const themeObject = themes[themeName];
@@ -164,33 +147,33 @@ function themeApply(themeName) {
 
 // Events
 const defaultTheme = localStorage.getItem('themeCSS') || 'default';
-themeApply(defaultTheme)
+themeApply(defaultTheme);
 
 renderAllTasks(objOfTasks);
-print(objOfTasks)
-
-listContainer.addEventListener('click', deleteHandler)
-
-function deleteHandler({target}) {
-  if(!target.classlist.contains('delete-btn')) return;
-  const li = target.closest('[data-id]')
-  li.remove();
-  delete objOfTasks[li.dataset.id];
-  print(objOfTasks);
-}
 
 function renderAllTasks(tasks) {
   if(!tasks) return console.error('No arguments passed');
 
   const fragment = document.createDocumentFragment();
-  const tasksArr = Object.values(tasks).sort((n, p) => p.timestamp - n.timestamp)
+  const tasksArr = Object.values(tasks).sort((n, p) => p.timestamp - n.timestamp);
   tasksArr.forEach(task => {
     fragment.append(createTaskCard(task))
-  })
+  });
 
   listContainer.append(fragment)
-  // localStorage.setItem('taskList', JSON.stringify(objOfTasks))
 }
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const titleValue = inputTitle.value;
+  const bodyValue = inputBody.value;
+
+  if (!checkEmptyField(inputTitle)) return;
+  if (!checkEmptyField(inputBody)) return;
+  const newTask = createNewTask(titleValue, bodyValue);
+  listContainer.prepend(createTaskCard(newTask));
+  form.reset();
+});
 
 function createTaskCard({_id, title, body} = {}) {
   const li = document.createElement('li');
@@ -206,17 +189,6 @@ function createTaskCard({_id, title, body} = {}) {
   return li;
 }
 
-form.addEventListener('submit', e => {
-  e.preventDefault();
-  const titleValue = inputTitle.value;
-  const bodyValue = inputBody.value;
-
-  if (!checkEmptyField(inputTitle)) return;
-  if (!checkEmptyField(inputBody)) return;
-  const newTask = createNewTask(titleValue, bodyValue)
-  listContainer.prepend(createTaskCard(newTask));
-  form.reset();
-})
 
 function checkEmptyField(field) {
   const message = `${field.placeholder} is empty! Please, fill it.`;
@@ -230,9 +202,20 @@ function createNewTask(title, body) {
     completed: false,
     timestamp: Date.now(),
     _id: `task-${Math.round(Math.random() * 1e20)}`
-  }
+  };
   objOfTasks[newTask._id] = newTask;
-  localStorage.setItem('taskList', JSON.stringify(objOfTasks))
+  localStorage.setItem('taskList', JSON.stringify(objOfTasks));
   return newTask;
 }
+
+// Delete task
+
+listContainer.addEventListener('click', deleteHandler);
+
+function deleteHandler({target}) {
+  if(!target.classList.contains('delete-btn')) return;
+  const li = target.closest('[data-id]');
+  li.remove();
+  delete objOfTasks[li.dataset.id];
+  localStorage.setItem('taskList', JSON.stringify(objOfTasks));
 }
