@@ -1,6 +1,9 @@
 // set Positions and Coordinates ////////////////////////////////////////////////////////////////////////////////////
 
-function setCellsCoordinates() {
+import {cells, cellsCoordinates, objOfCells, objOfPieces, pieces, board} from "@/scripts/vars";
+import {getSize, print} from "@/scripts/utils";
+
+export function setCellsCoordinates() {
     cells.forEach(cell => {
         // cell.textContent = cell.dataset.coordinates; //////////////////////////////////////////////////
         objOfCells[cell.dataset.codename] = {
@@ -13,20 +16,20 @@ function setCellsCoordinates() {
     })
 }
 
-function setPiecesSize() {
-    pieces.forEach(piece => {
-        const cellSize = getSize(cells[0]).width
+export function setPiecesSize() {
+    pieces.all.forEach(piece => {
+        const cellSize = getSize(cells[0]).width;
         piece.style.setProperty('width', cellSize + 'px');
         piece.style.setProperty('height', cellSize + 'px');
-    })
-    Object.entries(objOfPieces).forEach(([name, pieceData],i) => {
+    });
+    Object.entries(objOfPieces).forEach(([ , pieceData]) => {
         const cellX = objOfCells[pieceData.cell].left;
         const cellY = objOfCells[pieceData.cell].top;
-    
+
         pieceData.element.style.setProperty('left', cellX + 'px');
         pieceData.element.style.setProperty('top',  cellY + 'px');
     })
 }
 
-print(objOfCells)
-print(objOfPieces)
+print(objOfCells);
+print(objOfPieces);

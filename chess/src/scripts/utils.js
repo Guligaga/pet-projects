@@ -1,8 +1,8 @@
-function print(...content) {
+export function print(...content) {
     console.log(...content);
 }
 
-function getSize(element = document.documentElement, unit = '') {
+export function getSize(element = document.documentElement, unit = '') {
     if(!(element instanceof HTMLElement)) {
         return console.error('First argument must be a HTMLElement');
     }
@@ -35,18 +35,18 @@ function getSize(element = document.documentElement, unit = '') {
                 top: element.getBoundingClientRect().top,
                 right: element.getBoundingClientRect().right,
                 bottom: element.getBoundingClientRect().bottom,
-                left: element.getBoundingClientRect().left, 
+                left: element.getBoundingClientRect().left,
             }
         }
     }
-    return parseFloat(getComputedStyle(element)[size])
+    return parseFloat(getComputedStyle(element)[unit])
 }
 
-function el(selector) {
+export function el(selector) {
     return document.querySelector(selector);
 }
 
-function els(selector) {
+export function els(selector) {
     return [...document.querySelectorAll(selector)];
 }
 

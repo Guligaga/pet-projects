@@ -1,6 +1,12 @@
 // setup board state from FEN //////////////////////////////////////////////////////////////////////////////////////////////////
-function init(fen) {
-    if(!validateFen(fen)) return alert('Fen is not valid')
+import {objOfCells, objOfPieces, theme, piecesContainer, moveOptions, pieces} from "@/scripts/vars";
+import {els} from "@/scripts/utils";
+import {setCellsCoordinates, setPiecesSize} from "@/scripts/boardInit";
+import {setEnPassant, updateAllowedCells} from "@/scripts/move";
+import {checkShahes} from "@/scripts/shah";
+
+export function init(fen) {
+    if(!validateFen(fen)) return alert('Fen is not valid');
     for (const key in objOfPieces) {
         delete objOfPieces[key]
     }
@@ -8,7 +14,6 @@ function init(fen) {
         objOfCells[key].side = null;
     }
     const [positions, turn, castling, enPassant, uncaptured, ] = fen.split(' ');
-    // print(positions)
 
     initPositions(positions);
     renderPositions();
@@ -38,7 +43,7 @@ function initPositions(positions) {
         Q: 'queen-light',
         K: 'king-light',
         P: 'pawn-light'
-    }
+    };
     let gap = 0;
     const posArr = positions.split('/').join('');
     posArr.split('').forEach((position, index) => {
@@ -47,10 +52,10 @@ function initPositions(positions) {
         if(position === '/') return;
         if(!isNaN(+position)) return gap += +position - 1;
         // print(index, position)
-        
+
         // print(index, index + gap)
 
-        const pieceName = setPieceName(aliases[position])
+        const pieceName = setPieceName(aliases[position]);
         const cellName = cells[index + gap][0];
 
         objOfPieces[pieceName] = {
@@ -59,12 +64,12 @@ function initPositions(positions) {
             allowedCells: [],
             history: [],
             element: createPieceElement(pieceName)
-        }
+        };
         objOfCells[cellName].side = side
     })
 }
 
-function setPieceName(pieceName) {
+export function setPieceName(pieceName) {
     let counter = 1;
     while(objOfPieces.hasOwnProperty(pieceName + counter)) {
         counter++
@@ -72,22 +77,22 @@ function setPieceName(pieceName) {
     return pieceName + counter;
 }
 
-function createPieceElement(pieceName, temp = false) {
+export function createPieceElement(pieceName, temp = false) {
     const piece = document.createElement('div');
     piece.id = pieceName;
     const className0 = temp ? 'piece-modal' : 'piece';
-    piece.classList.add(className0, pieceName.slice(0, -1))
+    piece.classList.add(className0, pieceName.slice(0, -1));
     piece.dataset.theme = theme.forPieces;
     return piece;
 }
 
-function renderPositions() {
+export function renderPositions() {
     piecesContainer.innerHTML = '';
     Object.values(objOfPieces).forEach(piece => {
         piecesContainer.append(piece.element)
-    })
+    });
 
-    pieces = els('.piece');
+    pieces.all = els('.piece');
 
     setCellsCoordinates();
     setPiecesSize();
@@ -107,17 +112,17 @@ function initCastling(castling) {
         Q: {cell: 'a1', wing: 'queen'},
         K: {cell: 'h1', wing: 'king'},
         '-': {}
-    }
+    };
     // debugger
     const rooks = Object.keys(objOfPieces).filter(name => {
         return name.startsWith('rook');
-    })
+    });
     rooks.forEach(name => {
         castling.split('').forEach(castle => {
             if(objOfPieces[name].cell === aliases[castle].cell) {
                 objOfPieces[name].wing = aliases[castle].wing
             }
-        })
+        });
         if(!objOfPieces[name].wing) {
             objOfPieces[name].history.push(objOfPieces[name].cell)
         }
@@ -128,9 +133,9 @@ function initEnPassant(enPassantFen) {
     if(enPassantFen === '-') return moveOptions.enPassant = {};
     const shift = enPassantFen.slice(-1) === '3' ? 1 : -1;
     const pieceCell = enPassantFen.slice(0, 1) + (+enPassantFen.slice(-1) + shift);
-    
 
-    const [pieceName, piece] = Object.entries(objOfPieces).find(([name, piece]) => piece.cell === pieceCell)
+
+    const [pieceName, piece] = Object.entries(objOfPieces).find(([, piece]) => piece.cell === pieceCell);
     const previousCell = enPassantFen.slice(0, 1) + (+enPassantFen.slice(-1) - shift);
     setEnPassant(pieceName, piece, previousCell)
 }

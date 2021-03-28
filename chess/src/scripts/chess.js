@@ -3,20 +3,23 @@
 // print('4k1n1/3b4/8/8/R1B5/5N2/8/6K1 b - - 1 30', 'draw nEp')
 // Game start and reset //////////////////////////////////////////////////////////////////////////////////////////////////
 
-resetBtn.addEventListener('click', e => {
-    movesHistory.length = 0;
-    localStorage.setItem('history', null)
-    startGame()
-})
+import {movesHistory} from "@/scripts/vars";
+import {addToHistory} from "@/scripts/history";
+import {init} from "@/scripts/init";
 
-function startGame() {
-    const history = JSON.parse(localStorage.getItem('history'))
+
+export function resetGameHandler() {
+    movesHistory.length = 0;
+    localStorage.setItem('history', null);
+    startGame()
+}
+export function startGame() {
+    const history = JSON.parse(localStorage.getItem('history'));
     if(Array.isArray(history)) {
-        init(history.pop())
+        init(history.pop());
         movesHistory.push(...history)
     } else {
         const startPosition = init('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1');
         addToHistory(startPosition);
     }
 }
-startGame();

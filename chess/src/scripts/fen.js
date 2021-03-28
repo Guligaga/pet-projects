@@ -1,11 +1,13 @@
-function setFEN() {
-    const cellsArr = Object.keys(objOfCells)
+import {moveOptions, movesHistory, objOfCells, objOfPieces} from "@/scripts/vars";
+
+export function setFEN() {
+    const cellsArr = Object.keys(objOfCells);
     Object.entries(objOfPieces).forEach(([name, piece]) => {
         const cellIndex = cellsArr.indexOf(piece.cell);
-        let pieceName = name.startsWith('knight') ? name.slice(1, 2) : name[0]
+        let pieceName = name.startsWith('knight') ? name.slice(1, 2) : name[0];
         pieceName = piece.side === 'light'? pieceName.toUpperCase() : pieceName;
         cellsArr[cellIndex] = pieceName
-    })
+    });
 
     const positions = setFenPositions(cellsArr);
     const turn = moveOptions.whoseTurn === 'light' ? 'w ' : 'b ';
@@ -14,7 +16,7 @@ function setFEN() {
     const uncaptured = moveOptions.uncapturedMoves + ' ';
     const movesCount = setFenMovesCount(turn);
     return positions + turn + castling + enPassantFen + uncaptured + movesCount;
-    
+
 }
 
 function setFenPositions(cellsArr) {
@@ -39,7 +41,7 @@ function setFenPositions(cellsArr) {
             fen += '/'
         }
         return acc;
-    }, 0)
+    }, 0);
     return fen + ' ';
 }
 
@@ -49,11 +51,12 @@ function setFenCastling() {
         h8: 'k',
         a1: 'Q',
         h1: 'K'
-    }
+    };
     const castling = Object.entries(objOfPieces).reduce((acc, [name, piece]) => {
         if(!name.startsWith('rook')) return acc;
         if(!piece.history.length) {
-            return acc += aliases[piece.cell]
+            acc += aliases[piece.cell];
+            return acc;
         }
         return acc;
     }, '').split('').reverse().join('');

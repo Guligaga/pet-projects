@@ -1,13 +1,13 @@
 // Board elements
 
-const boardCotainer = el('.chess-main')
+import {el, els} from "@/scripts/utils";
+
 const board = el('.chess-board');
-const piecesContainer = el('.pieces')
+const piecesContainer = el('.pieces');
 const notationsContainer = el('.notation-container');
 const notations = els('.notation');
 const rows = els('.row');
 const cells = els('.cell');
-let pieces = els('.piece');
 
 const promotionModal = el('.promotion-modal');
 const gameoverModal = el('.gameover-modal');
@@ -15,7 +15,6 @@ const gameoverModal = el('.gameover-modal');
 const fenForm = el('#fen-form');
 const fenInput = el('#fen-input');
 const fenToClipboard = el('#fen-to-cb');
-const fenFromClipboard = el('#fen-from-cb');
 const controllers = els('.moves-history-controllers__item');
 
 const sideSelector = el('#side-selector');
@@ -408,6 +407,35 @@ const moveOptions = {
     uncapturedMoves: 0,
     isPromoted: false,
     moveIndex: 0,
-}
+};
 
-let currentDraggablePiece = null;
+const pieces = {
+    all: els('.piece'),
+    currentDraggable: null,
+};
+
+export {
+    board,
+    piecesContainer,
+    notationsContainer,
+    notations,
+    rows,
+    cells,
+    pieces,
+    promotionModal,
+    gameoverModal,
+    fenForm,
+    fenInput,
+    fenToClipboard,
+    controllers,
+    sideSelector,
+    piecesThemeSelector,
+    boardThemeSelector,
+    resetBtn,
+    objOfCells,
+    objOfPieces,
+    theme,
+    cellsCoordinates,
+    movesHistory,
+    moveOptions,
+}

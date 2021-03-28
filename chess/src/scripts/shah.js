@@ -1,22 +1,24 @@
 // Shah //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function checkShah(cellName, enemy) {
+import {moveOptions, objOfCells, objOfPieces} from "@/scripts/vars";
+import {getAllowedMoves} from "@/scripts/allowedMoves";
+
+export function checkShah(cellName, enemy) {
     return cellName === objOfPieces[`king-${enemy}1`].cell
 }
 
-function checkShahes(currentSide) {
-    // print(piecesCopy)
+export function checkShahes(currentSide) {
     objOfPieces[`king-light1`].underCheck = false;
     objOfPieces[`king-dark1`].underCheck = false;
 
     Object.entries(objOfPieces).forEach(([name, piece]) => {
-        const {allowedCells, side} = piece
+        const {allowedCells, side} = piece;
         if(side !== currentSide) return;
 
         const enemy = side === 'light'? 'dark' : 'light';
         allowedCells.forEach(move => {
             if(checkShah(move, enemy)) {
-                const pieceCopy = {name, ...piece}
+                const pieceCopy = {name, ...piece};
                 moveOptions.checkingPieces.push(pieceCopy);
                 objOfPieces[`king-${enemy}1`].underCheck = true;
             }
@@ -41,8 +43,8 @@ function checkPossibleShahes(side) {
     })
 }
 
-function checkmateOrStalemate(side) {
-    const enemySide = side === 'light'? 'dark' : 'light'
+export function checkmateOrStalemate(side) {
+    const enemySide = side === 'light'? 'dark' : 'light';
     const checkAllowedMoves = Object.values(objOfPieces).filter(({side}) => side === enemySide)
         .some( ({allowedCells}) => allowedCells.length);
 
@@ -52,9 +54,9 @@ function checkmateOrStalemate(side) {
     return null;
 }
 
-function filterIfUnderCheck(pieceName, moves) {
-    const currentCell = objOfPieces[pieceName].cell
-    const side = objOfPieces[pieceName].side
+export function filterIfUnderCheck(pieceName, moves) {
+    const currentCell = objOfPieces[pieceName].cell;
+    const side = objOfPieces[pieceName].side;
 
     const res = moves.filter(filterMoves);
     function filterMoves(move) {
@@ -62,12 +64,12 @@ function filterIfUnderCheck(pieceName, moves) {
         objOfCells[currentCell].side = null;
         objOfPieces[pieceName].cell = move;
 
-        const currentSide = objOfCells[move].side
-        objOfCells[move].side = side
+        const currentSide = objOfCells[move].side;
+        objOfCells[move].side = side;
 
         checkPossibleShahes(side, true);
         objOfCells[move].side = currentSide;
-        const possibleCheckCell = objOfPieces[`king-${side}1`].underPossibleCheck.cell
+        const possibleCheckCell = objOfPieces[`king-${side}1`].underPossibleCheck.cell;
         if(possibleCheckCell === move) {
             return true;
         }
@@ -77,7 +79,7 @@ function filterIfUnderCheck(pieceName, moves) {
     if(pieceName.startsWith('king')) {
         objOfPieces[pieceName].underPossibleCheck = false;
     }
-    objOfPieces[pieceName].cell = currentCell; 
-    objOfCells[currentCell].side = objOfPieces[pieceName].side
+    objOfPieces[pieceName].cell = currentCell;
+    objOfCells[currentCell].side = objOfPieces[pieceName].side;
     return res
 }
