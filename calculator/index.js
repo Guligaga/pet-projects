@@ -61,7 +61,7 @@ operations.forEach(operation => {
     operation.addEventListener('click', e => {
         if(changeOperator(e.currentTarget)) return;
         enable(e.currentTarget);
-        e.currentTarget.setAttribute('disabled', 'true');
+        e.currentTarget.setAttribute('disabled', '');
         operationAfterOper()
         operationAfterEqual();
         calculation.operation = e.currentTarget.value;
@@ -75,7 +75,7 @@ function changeOperator(target) {
     for (const operation of operations) {
         if(operation.hasAttribute('disabled')) {
             enable(target);
-            target.setAttribute('disabled', 'true');
+            target.setAttribute('disabled', '');
             calculation.operation = target.value;
             return true;
         }
@@ -141,7 +141,6 @@ function enable(target) {
 
 function calculate() {
     let res;
-    console.log(calculation)
     switch(calculation.operation) {
         case '+':
             res = +calculation.firstV + +calculation.secondV;
